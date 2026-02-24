@@ -1,0 +1,21 @@
+[build]
+command = "npm run build"
+functions = "netlify/functions"
+publish = "public"
+
+[functions]
+node_bundler = "esbuild"
+# external_node_modules = ["sharp"]
+
+[build.environment]
+NODE_VERSION = "22"
+
+[dev]
+staticServerPort = 3998
+port = 8887
+
+[[redirects]]
+from = "/v1"
+to = "/.netlify/functions/v1"
+status = 200
+force = true

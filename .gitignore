@@ -1,0 +1,29 @@
+# --- Node / Dependencies ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Netlify ---
+# Local development server and build artifacts
+.netlify/
+dist/
+
+# --- Environment Secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- Claude Code Memory Protocol ---
+# Ignore the root of plans (scratchpads), but keep the completed folder
+/plans/*
+!/plans/completed/
+
+# --- Claude Code ---
+.claude/*
+!.claude/commands/
+
+# --- OS / IDE ---
+.DS_Store
+.vscode/
+.idea/

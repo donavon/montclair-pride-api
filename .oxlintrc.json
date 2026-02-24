@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "import",
+    "jsdoc",
+    "node",
+    "oxc",
+    "promise",
+    "react-perf",
+    "react",
+    "typescript",
+    "unicorn"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "react/button-has-type": "error",
+    "unicorn/prefer-number-properties": "error",
+    "import/no-duplicates": "error",
+    "import/no-relative-parent-imports": "error",
+    "import/no-empty-named-blocks": "error",
+    "no-array-constructor": "error",
+    "no-else-return": "error",
+    "react/rules-of-hooks": "error",
+    "typescript/prefer-ts-expect-error": "error",
+    "unicorn/prefer-array-flat-map": "error",
+    "unicorn/prefer-array-index-of": "error",
+    "unicorn/prefer-includes": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "default-case-last": "error",
+    "default-param-last": "error",
+    "max-params": ["error", { "max": 3 }],
+    "no-await-in-loop": "error",
+    "no-useless-call": "error",
+    "oxc/no-accumulating-spread": "error",
+    "react/no-array-index-key": "error",
+    "no-unused-vars": "error",
+    "eqeqeq": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "react/jsx-no-target-blank": "error",
+    "react/no-danger": "warn",
+    "react/jsx-key": "error",
+    "react/no-children-prop": "error",
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-unused-vars": "error",
+    "unicorn/no-null": "off",
+    "unicorn/prefer-ternary": "error",
+    "unicorn/throw-new-error": "error",
+    "unicorn/prefer-string-slice": "error",
+    "unicorn/prefer-modern-math-apis": "error",
+    "no-lonely-if": "error",
+    "no-useless-return": "error",
+    "prefer-arrow-callback": "warn",
+    "react/jsx-no-leaked-render": ["error", { "validStrategies": ["coerce"] }],
+    "no-unneeded-ternary": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx"],
+      "plugins": ["vitest"]
+    },
+    {
+      "files": ["scripts/**/*.js", "scripts/**/*.mjs"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

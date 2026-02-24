@@ -1,0 +1,481 @@
+export type Performer = {
+  id: string;
+  name: string;
+  stage: StageKey;
+  startTime: string; // "12:00"
+  endTime: string;
+  category:
+    | "music"
+    | "drag"
+    | "dance"
+    | "choir"
+    | "comedy"
+    | "dj"
+    | "theater"
+    | "kids"
+    | "other";
+  description?: string;
+  isHeadliner?: boolean;
+  isFavorited?: boolean;
+};
+
+export type StageKey = "main" | "schoolofrock" | "opencall";
+
+export type Stage = {
+  id: StageKey;
+  name: string;
+  fullName: string;
+  location: string;
+  color: string;
+  emcees: string[];
+};
+
+const stage: Record<StageKey, Omit<Stage, "id">> = {
+  main: {
+    name: "Main Stage",
+    fullName: "Main Stage @ Lackawanna Plaza",
+    location: "Lackawanna Plaza",
+    color: "#e040fb",
+    emcees: ["Dominique Jackson", "Eddie Nicholas", "Harmonica Sunbeam"],
+  },
+  schoolofrock: {
+    name: "School of Rock",
+    fullName: "School of Rock Stage @ Wellmont Plaza",
+    location: "Wellmont Plaza",
+    color: "#00e5ff",
+    emcees: ["Austin Hall", "Lady Keyante"],
+  },
+  opencall: {
+    name: "Open Call",
+    fullName: "Open Call Stage @ Church Street",
+    location: "Church Street",
+    color: "#ffd600",
+    emcees: ["Mimi Sashimi", "Chauncey Dandridge", "Donna Vee"],
+  },
+};
+
+export const stages: Stage[] = Object.entries(stage).map(([key, value]) => ({
+  id: key as StageKey,
+  ...value,
+}));
+
+// export const performersByStage: Record<StageKey, Performer[]> = {
+//   main: performers.filter((p) => p.stage === "main"),
+//   schoolofrock: performers.filter((p) => p.stage === "schoolofrock"),
+//   opencall: performers.filter((p) => p.stage === "opencall"),
+// };
+
+export const performers: Performer[] = [
+  // Main Stage 12–2
+  {
+    id: "m1",
+    name: "School of Rock Houseband",
+    stage: "main",
+    startTime: "12:00",
+    endTime: "12:30",
+    category: "music",
+  },
+  {
+    id: "m2",
+    name: "NJ Gay Men's Choir",
+    stage: "main",
+    startTime: "12:30",
+    endTime: "13:00",
+    category: "choir",
+  },
+  {
+    id: "m3",
+    name: "Pride Choir",
+    stage: "main",
+    startTime: "13:00",
+    endTime: "13:20",
+    category: "choir",
+  },
+  {
+    id: "m4",
+    name: "Austin Hall",
+    stage: "main",
+    startTime: "13:20",
+    endTime: "13:40",
+    category: "music",
+  },
+  {
+    id: "m5",
+    name: "Rocking for Inclusion",
+    stage: "main",
+    startTime: "13:40",
+    endTime: "14:00",
+    category: "music",
+  },
+
+  // Main Stage 2–4
+  {
+    id: "m6",
+    name: "Justice LaBrave",
+    stage: "main",
+    startTime: "14:00",
+    endTime: "14:20",
+    category: "drag",
+  },
+  {
+    id: "m7",
+    name: "Isabel Cruz",
+    stage: "main",
+    startTime: "14:20",
+    endTime: "14:40",
+    category: "music",
+  },
+  {
+    id: "m8",
+    name: "Dance Mob",
+    stage: "main",
+    startTime: "14:40",
+    endTime: "15:00",
+    category: "dance",
+  },
+  {
+    id: "m9",
+    name: "Kris Cherry",
+    stage: "main",
+    startTime: "15:00",
+    endTime: "15:15",
+    category: "drag",
+  },
+  {
+    id: "m10",
+    name: "Amanda is Tall",
+    stage: "main",
+    startTime: "15:15",
+    endTime: "15:30",
+    category: "music",
+  },
+  {
+    id: "m11",
+    name: "HAIR – Vanguard Theater Co.",
+    stage: "main",
+    startTime: "15:30",
+    endTime: "15:50",
+    category: "theater",
+  },
+  {
+    id: "m12",
+    name: "NAIM",
+    stage: "main",
+    startTime: "15:50",
+    endTime: "16:00",
+    category: "music",
+  },
+  {
+    id: "m13",
+    name: "La Diva Ciccone",
+    stage: "main",
+    startTime: "16:00",
+    endTime: "16:10",
+    category: "drag",
+  },
+  {
+    id: "m14",
+    name: "Tiger James",
+    stage: "main",
+    startTime: "16:10",
+    endTime: "16:20",
+    category: "music",
+  },
+
+  // Main Stage 4–6
+  {
+    id: "m15",
+    name: "Mimi Sashimi",
+    stage: "main",
+    startTime: "16:00",
+    endTime: "16:20",
+    category: "drag",
+  },
+  {
+    id: "m16",
+    name: "Rocky Horror – Ordinary Kids",
+    stage: "main",
+    startTime: "16:20",
+    endTime: "16:40",
+    category: "theater",
+  },
+  {
+    id: "m17",
+    name: "Hades Nuttzz",
+    stage: "main",
+    startTime: "16:40",
+    endTime: "17:00",
+    category: "drag",
+  },
+  {
+    id: "m18",
+    name: "DANE",
+    stage: "main",
+    startTime: "17:00",
+    endTime: "17:20",
+    category: "music",
+  },
+  {
+    id: "m19",
+    name: "Eddie Nicholas",
+    stage: "main",
+    startTime: "17:20",
+    endTime: "17:35",
+    category: "other",
+  },
+  {
+    id: "m20",
+    name: "She Ain't Right",
+    stage: "main",
+    startTime: "17:35",
+    endTime: "17:50",
+    category: "music",
+  },
+  {
+    id: "m21",
+    name: "DANE & Kris Cherry",
+    stage: "main",
+    startTime: "17:50",
+    endTime: "18:00",
+    category: "music",
+  },
+
+  // Main Stage 6–9 (Street Dance Party)
+  {
+    id: "m22",
+    name: "DJ Vito Fun – Street Dance Party",
+    stage: "main",
+    startTime: "18:00",
+    endTime: "21:00",
+    category: "dj",
+    isHeadliner: true,
+    description:
+      "Close out Pride with the ultimate dance party on Bloomfield Ave!",
+  },
+
+  // School of Rock Stage 12–2
+  {
+    id: "s1",
+    name: "DJ Jspins",
+    stage: "schoolofrock",
+    startTime: "12:00",
+    endTime: "12:30",
+    category: "dj",
+  },
+  {
+    id: "s2",
+    name: "Lady Keyante",
+    stage: "schoolofrock",
+    startTime: "12:30",
+    endTime: "12:50",
+    category: "drag",
+  },
+  {
+    id: "s3",
+    name: "Austin Hall",
+    stage: "schoolofrock",
+    startTime: "12:50",
+    endTime: "13:10",
+    category: "music",
+  },
+  {
+    id: "s4",
+    name: "Ela Martini",
+    stage: "schoolofrock",
+    startTime: "13:10",
+    endTime: "13:30",
+    category: "music",
+  },
+  {
+    id: "s5",
+    name: "Drums of Thunder",
+    stage: "schoolofrock",
+    startTime: "13:30",
+    endTime: "14:00",
+    category: "music",
+  },
+
+  // School of Rock Stage 2–4
+  {
+    id: "s6",
+    name: "NJ Gay Men's Choir",
+    stage: "schoolofrock",
+    startTime: "14:00",
+    endTime: "14:20",
+    category: "choir",
+  },
+  {
+    id: "s7",
+    name: "Gigi Martini Drag Storytime (Spanish)",
+    stage: "schoolofrock",
+    startTime: "14:20",
+    endTime: "14:40",
+    category: "kids",
+  },
+  {
+    id: "s8",
+    name: "Grayson Tyler",
+    stage: "schoolofrock",
+    startTime: "14:40",
+    endTime: "15:00",
+    category: "music",
+  },
+  {
+    id: "s9",
+    name: "Pride Choir",
+    stage: "schoolofrock",
+    startTime: "15:00",
+    endTime: "15:20",
+    category: "choir",
+  },
+  {
+    id: "s10",
+    name: "DJ Jspins",
+    stage: "schoolofrock",
+    startTime: "15:20",
+    endTime: "15:40",
+    category: "dj",
+  },
+  {
+    id: "s11",
+    name: "Gigi Martini",
+    stage: "schoolofrock",
+    startTime: "15:40",
+    endTime: "16:00",
+    category: "drag",
+  },
+  {
+    id: "s12",
+    name: "Marina DeMaio",
+    stage: "schoolofrock",
+    startTime: "16:00",
+    endTime: "16:20",
+    category: "music",
+  },
+  {
+    id: "s13",
+    name: "Solsista Funk",
+    stage: "schoolofrock",
+    startTime: "16:20",
+    endTime: "16:40",
+    category: "music",
+  },
+
+  // School of Rock Stage 4–6
+  {
+    id: "s14",
+    name: "Adjustable Thrills",
+    stage: "schoolofrock",
+    startTime: "16:00",
+    endTime: "16:20",
+    category: "music",
+  },
+  {
+    id: "s15",
+    name: "RusseyDesigns",
+    stage: "schoolofrock",
+    startTime: "16:20",
+    endTime: "16:40",
+    category: "other",
+  },
+  {
+    id: "s16",
+    name: "Indie Illusion",
+    stage: "schoolofrock",
+    startTime: "16:40",
+    endTime: "17:00",
+    category: "music",
+  },
+  {
+    id: "s17",
+    name: "School of Rock",
+    stage: "schoolofrock",
+    startTime: "17:00",
+    endTime: "17:20",
+    category: "music",
+  },
+  {
+    id: "s18",
+    name: "Joe Colwell",
+    stage: "schoolofrock",
+    startTime: "17:20",
+    endTime: "17:40",
+    category: "music",
+  },
+  {
+    id: "s19",
+    name: "She's All That",
+    stage: "schoolofrock",
+    startTime: "17:40",
+    endTime: "18:00",
+    category: "music",
+    isHeadliner: true,
+    description: "Headlining the School of Rock Stage!",
+  },
+];
+
+export type YearEvent = {
+  id: string;
+  title: string;
+  date: string;
+  time?: string;
+  location: string;
+  description: string;
+  category: "community" | "fundraiser" | "social" | "pride" | "education";
+  link?: string;
+};
+
+export const events: YearEvent[] = [
+  {
+    id: "e1",
+    title: "Montclair Pride 2026",
+    date: "2026-06-13",
+    time: "12:00 PM – 9:00 PM",
+    location: "Bloomfield Ave, Montclair NJ",
+    description:
+      "The main event! Bigger, bolder, and more fantastic than ever. Three stages, food trucks, family zone, and the ultimate dance party.",
+    category: "pride",
+  },
+  {
+    id: "e2",
+    title: "Volunteer Orientation",
+    date: "2026-05-15",
+    time: "6:00 PM",
+    location: "Out Montclair HQ",
+    description:
+      "Join our amazing volunteer crew! Orientation for all Pride 2026 volunteers.",
+    category: "community",
+    link: "https://outmontclair.org/volunteer-opportunities/",
+  },
+  {
+    id: "e3",
+    title: "Pride Kickoff Party",
+    date: "2026-06-06",
+    time: "7:00 PM",
+    location: "TBA, Montclair",
+    description:
+      "Kick off Pride Month with the Montclair LGBTQ+ community! Music, drinks, and celebration.",
+    category: "social",
+  },
+  {
+    id: "e4",
+    title: "Community Fundraiser Dinner",
+    date: "2026-04-20",
+    time: "6:30 PM",
+    location: "Montclair Art Museum",
+    description:
+      "Annual fundraiser dinner supporting Out Montclair's year-round programs.",
+    category: "fundraiser",
+    link: "https://outmontclair.org/donate",
+  },
+];
+
+export const parking = [
+  { name: "Bay Street Deck", walk: "2 min walk", spaces: "~300" },
+  { name: "Crescent Deck", walk: "4 min walk", spaces: "~250" },
+  { name: "Valley Road Deck", walk: "5 min walk", spaces: "~200" },
+  { name: "Midtown Deck", walk: "6 min walk", spaces: "~300" },
+  { name: "Lackawanna Plaza Surface Lot", walk: "On-site", spaces: "~100" },
+  { name: "South Willow Lot", walk: "7 min walk", spaces: "~150" },
+  { name: "South Fullerton Lot", walk: "8 min walk", spaces: "~100" },
+];
