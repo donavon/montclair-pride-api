@@ -11,13 +11,13 @@
 
 ## Discrepancies Found & Resolved
 
-| # | Issue | Resolution |
-|---|---|---|
-| 1 | AGENTS.md referenced `.eslintrc.json` (non-existent) — project uses `.oxlintrc.json` | Documented correctly in `memory_bank.md`; AGENTS.md note is a known stale reference |
-| 2 | `index.ts` handler was missing `Context` parameter | Fixed: `_context: Context` added with `import type { Context }` |
-| 3 | Typo in `get-data.ts` comment: "durig" | Fixed: corrected to "during" |
-| 4 | `mock-data.ts` was untracked in git | Addressed by user |
-| 5 | `all-data.ts` had `AD` git status (added then deleted) | Addressed by user |
+| #   | Issue                                                                                | Resolution                                                                          |
+| --- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| 1   | AGENTS.md referenced `.eslintrc.json` (non-existent) — project uses `.oxlintrc.json` | Documented correctly in `memory_bank.md`; AGENTS.md note is a known stale reference |
+| 2   | `index.ts` handler was missing `Context` parameter                                   | Fixed: `_context: Context` added with `import type { Context }`                     |
+| 3   | Typo in `get-data.ts` comment: "durig"                                               | Fixed: corrected to "during"                                                        |
+| 4   | `mock-data.ts` was untracked in git                                                  | Addressed by user                                                                   |
+| 5   | `all-data.ts` had `AD` git status (added then deleted)                               | Addressed by user                                                                   |
 
 ## Files Changed
 

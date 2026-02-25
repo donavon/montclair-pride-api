@@ -16,15 +16,15 @@
 
 ## Tech Stack (Ox Stack)
 
-| Tool | Package | Config file |
-|---|---|---|
-| Runtime | Node 22 / Netlify Functions | `netlify.toml` |
-| Language | TypeScript 5.9 | `tsconfig.json` |
-| Linter | **oxlint** 1.48 | `.oxlintrc.json` |
-| Formatter | **oxfmt** 0.33 | `.oxfmtrc.json` |
-| Bundler | esbuild (via Netlify) | `netlify.toml [functions]` |
-| Validation | zod 4 | `package.json` |
-| Type defs | `@netlify/functions` 5, `@types/node` 25 | `tsconfig.json` |
+| Tool       | Package                                  | Config file                |
+| ---------- | ---------------------------------------- | -------------------------- |
+| Runtime    | Node 22 / Netlify Functions              | `netlify.toml`             |
+| Language   | TypeScript 5.9                           | `tsconfig.json`            |
+| Linter     | **oxlint** 1.48                          | `.oxlintrc.json`           |
+| Formatter  | **oxfmt** 0.33                           | `.oxfmtrc.json`            |
+| Bundler    | esbuild (via Netlify)                    | `netlify.toml [functions]` |
+| Validation | zod 4                                    | `package.json`             |
+| Type defs  | `@netlify/functions` 5, `@types/node` 25 | `tsconfig.json`            |
 
 **No ESLint. No Prettier. No Babel. No Webpack.** The project uses the Ox toolchain exclusively.
 
@@ -32,16 +32,16 @@
 
 ## NPM Scripts
 
-| Script | Command |
-|---|---|
-| `npm run dev` | `netlify dev` (local dev server on port 8887) |
-| `npm run build` | `tsc -p tsconfig.json` |
-| `npm run lint` | `oxlint --deny-warnings .` |
-| `npm run lint:fix` | `oxlint --fix .` |
-| `npm run format` | `oxfmt .` |
-| `npm run fix` | `npm run format && npm run lint:fix` ← **run after every file change** |
-| `npm run typecheck` | `tsc` |
-| `npm run ci` | lint + format:check + typecheck |
+| Script              | Command                                                                |
+| ------------------- | ---------------------------------------------------------------------- |
+| `npm run dev`       | `netlify dev` (local dev server on port 8887)                          |
+| `npm run build`     | `tsc -p tsconfig.json`                                                 |
+| `npm run lint`      | `oxlint --deny-warnings .`                                             |
+| `npm run lint:fix`  | `oxlint --fix .`                                                       |
+| `npm run format`    | `oxfmt .`                                                              |
+| `npm run fix`       | `npm run format && npm run lint:fix` ← **run after every file change** |
+| `npm run typecheck` | `tsc`                                                                  |
+| `npm run ci`        | lint + format:check + typecheck                                        |
 
 ---
 
@@ -84,9 +84,9 @@
 
 ## Routing Registry
 
-| Public URL | Netlify function | Status |
-|---|---|---|
-| `/v1` | `/.netlify/functions/v1` | ✅ Live (mock data) |
+| Public URL | Netlify function         | Status              |
+| ---------- | ------------------------ | ------------------- |
+| `/v1`      | `/.netlify/functions/v1` | ✅ Live (mock data) |
 
 ### `netlify.toml` redirect pattern (required for every new route):
 
@@ -110,7 +110,7 @@ import type { Context } from "@netlify/functions";
 // If context is unused, prefix with _ to satisfy the no-unused-vars lint rule.
 export default async function handler(
   req: Request,
-  _context: Context,
+  _context: Context
 ): Promise<Response> {
   return new Response(JSON.stringify(payload), {
     headers: { "Content-Type": "application/json; charset=utf-8" },

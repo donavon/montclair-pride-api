@@ -15,7 +15,7 @@ staticServerPort = 3998
 port = 8887
 
 [[redirects]]
-from = "/v1"
-to = "/.netlify/functions/v1"
+from = "/api/v1/data"
+to = "/.netlify/functions/fetch-all-data"
 status = 200
 force = true

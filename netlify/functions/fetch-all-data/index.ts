@@ -1,21 +1,20 @@
 // oxlint-disable no-console
 import type { Context } from "@netlify/functions";
-import { getData } from "./get-data";
 import { responseJson } from "~/lib/response-json";
+import { fetchSheetData } from "./sheets";
 
 export default async function handler(
   request: Request,
   context: Context,
 ): Promise<Response> {
-  const { pathname } = new URL(request.url);
-
+  const { pathname, search } = new URL(request.url);
+  const path = `${pathname}${search}`;
   const ua = request.headers.get("user-agent");
-  const who = request.headers.get("x-who");
   const ip = context.ip;
   const method = request.method;
-  console.log({ ip, method, pathname, who, ua });
+  console.log({ ip, method, path, ua });
 
-  const data = await getData();
+  const data = await fetchSheetData();
 
   return responseJson(data, request);
 }
