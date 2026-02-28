@@ -1,5 +1,7 @@
 name = "montclair-pride-api"
 main = "src/index.ts"
+
+# see https://developers.cloudflare.com/workers/configuration/compatibility-flags/
 compatibility_date = "2026-02-26"
 compatibility_flags = ["nodejs_als"] # Enable AsyncLocalStorage
 
@@ -9,8 +11,10 @@ directory = "./public"
 binding = "ASSETS"
 run_worker_first = false
 
+# Enable observability for local/dev previews
 [observability]
 enabled = true
+head_sampling_rate = 1
 
 [version_metadata]
 binding = "CF_VERSION_METADATA"
@@ -25,8 +29,14 @@ ENVIRONMENT = "development"
 S_MAXAGE = 60
 SWR_TTL = 2592000
 
+# --- PRODUCTION SETTINGS ---
 [env.production]
-version_metadata = { binding = "CF_VERSION_METADATA" }
+[env.production.observability]
+enabled = true
+head_sampling_rate = 1
+
+[env.production.version_metadata]
+binding = "CF_VERSION_METADATA"
 
 [env.production.vars]
 GOOGLE_SHEET_ID = "1S5vTxMOR0TmeI9V0X02mS709j7G-06YJezOuRjooqFU"

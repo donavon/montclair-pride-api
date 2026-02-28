@@ -2,11 +2,23 @@
 /sw.js
   Cache-Control: no-cache
 
-# Specific rule for Manifest
-/manifest.json
+# Specific rule for the Stealth Landing Page (1-hour cache)
+/
+  Cache-Control: public, max-age=3600, must-revalidate
+/index.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# SEO and Bot files (Keep these short)
+/robots.txt
   Cache-Control: public, max-age=0, must-revalidate
 
-# Global rule for everything else (Aggressive Caching)
-/*
+# Grouped Rule for All App Assets (Images, Icons, etc.)
+/assets/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex, nofollow
+
+# Global security rule
+/*
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-Robots-Tag: noindex, nofollow
