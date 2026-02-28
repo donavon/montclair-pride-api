@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# Prevents multiple runs from clashing and saves GitHub minutes
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -10,10 +9,14 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch: # Allows manual "Force Refresh/Deploy" from GitHub UI
+  workflow_dispatch:
+
+# These secrets are now available to every step in every job
+env:
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
 jobs:
-  # --- JOB 1: THE QUALITY GATE ---
   quality-gate:
     name: Check Code (CI)
     runs-on: ubuntu-latest
@@ -30,18 +33,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run CI Suite
-        # This triggers your: lint, format:check, knip, and typecheck
+      - name: Run CI Suite (Lint, Format, Types, Knip)
         run: npm run ci
-        env:
-          # Required so 'wrangler types' can fetch your remote bindings
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
-  # --- JOB 2: THE DEPLOYER ---
   deploy:
     name: Deploy to Production (CD)
     needs: quality-gate
-    # Only deploy on pushes to main OR manual trigger
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
@@ -61,4 +58,6 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # Providing accountId here ensures the 'multiple accounts' error is gone
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           environment: "production"
