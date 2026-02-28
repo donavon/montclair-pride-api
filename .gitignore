@@ -4,11 +4,6 @@ npm-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# --- Netlify ---
-# Local development server and build artifacts
-.netlify/
-dist/
-
 # --- Environment Secrets ---
 .env
 .env.local
@@ -27,3 +22,30 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+
+# --- Cloudflare ---
+worker-configuration.d.ts
+.wrangler
+.dev.vars
+dist/
+.cache/
+
+# Terraform local state and temporary files
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+terraform/*.tfvars.json
+
+# Terraform crash logs
+terraform/crash.log
+terraform/crash.*.log
+
+# Terraform provider plugins
+terraform/*.exe
+terraform/terraform.tfstate.d/
+
+# Terraform lock file 
+# (Optional: some prefer to check this in to lock provider versions, 
+# but for solo projects, it's often ignored)
+# terraform/.terraform.lock.hcl

@@ -4,29 +4,30 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "dev": "netlify dev",
-    "deploy": "netlify deploy",
-    "deploy:prod": "netlify deploy --prod",
-    "lint": "oxlint --deny-warnings .",
-    "lint:fix": "oxlint --fix .",
-    "format": "oxfmt .",
+    "types": "wrangler types",
+    "build": "wrangler types && tsc -p tsconfig.json",
+    "deploy": "wrangler deploy --env production",
+    "dev": "wrangler types && wrangler dev",
+    "lint": "oxlint --deny-warnings src",
+    "lint:fix": "oxlint --fix src",
+    "format": "oxfmt src",
     "fix": "npm run format && npm run lint:fix",
-    "format:check": "oxfmt --check .",
-    "typecheck": "tsc",
-    "ci": "npm run lint && npm run format:check && npm run typecheck"
+    "format:check": "oxfmt --check src",
+    "typecheck": "wrangler types && tsc",
+    "ci": "npm run lint && npm run format:check && npm run knip && npm run typecheck",
+    "knip": "knip"
   },
   "dependencies": {
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@netlify/functions": "^5.1.2",
-    "@types/node": "^25.3.0",
-    "netlify-cli": "^23.15.1",
+    "@types/node": "^25.3.2",
+    "knip": "^5.85.0",
     "oxfmt": "^0.33.0",
     "oxlint": "^1.48.0",
     "type-fest": "^5.4.4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.69.0"
   },
   "engines": {
     "node": ">=22"

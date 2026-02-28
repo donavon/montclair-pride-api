@@ -1,0 +1,12 @@
+# Specific rule for Service Worker (No Caching)
+/sw.js
+  Cache-Control: no-cache
+
+# Specific rule for Manifest
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Global rule for everything else (Aggressive Caching)
+/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff

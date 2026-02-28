@@ -1,7 +1,13 @@
 import { z } from "zod";
-import type { Performer, Stage, StageKey, YearEvent } from "./types";
+import type {
+  AppConfig,
+  Performer,
+  SheetData,
+  Stage,
+  StageKey,
+  YearEvent,
+} from "./types";
 
-const SPREADSHEET_ID = "1S5vTxMOR0TmeI9V0X02mS709j7G-06YJezOuRjooqFU";
 const SHEETS_BASE = "https://sheets.googleapis.com/v4/spreadsheets";
 
 type SheetName = "performers" | "stages" | "events" | "parking";
@@ -165,13 +171,13 @@ function parseParking(
   );
 }
 
-export async function fetchSheetData() {
-  const apiKey = Netlify.env.get("GOOGLE_SHEETS_API_KEY");
-  if (!apiKey) throw new Error("GOOGLE_SHEETS_API_KEY is not set");
+export async function fetchSheetData(config: AppConfig): Promise<SheetData> {
+  const { GOOGLE_SHEETS_API_KEY, GOOGLE_SHEET_ID } = config;
 
   const sheetNames: SheetName[] = ["performers", "stages", "events", "parking"];
   const ranges = sheetNames.map((s) => `ranges=${s}`).join("&");
-  const url = `${SHEETS_BASE}/${SPREADSHEET_ID}/values:batchGet?${ranges}&key=${apiKey}`;
+
+  const url = `${SHEETS_BASE}/${GOOGLE_SHEET_ID}/values:batchGet?${ranges}&key=${GOOGLE_SHEETS_API_KEY}`;
 
   const res = await fetch(url);
   if (!res.ok) {
